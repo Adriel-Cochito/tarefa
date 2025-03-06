@@ -42,4 +42,11 @@ public class TarefaResource {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<TarefaDTO> update(@PathVariable Long id, @RequestBody TarefaDTO dto) {
+
+
+        dto = service.update(id, dto);
+        return ResponseEntity.ok().body(dto);
+    }
 }

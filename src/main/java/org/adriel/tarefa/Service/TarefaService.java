@@ -50,4 +50,21 @@ public class TarefaService {
         }
 
     }
+
+    @Transactional
+    public TarefaDTO update(Long id, TarefaDTO dto) {
+
+        try {
+            Tarefa entity = new Tarefa();
+            entity.setTitle(dto.getTitle());
+            entity.setStatus(dto.getStatus());
+
+            entity = repository.save(entity);
+
+            return new TarefaDTO(entity);
+        } catch (Exception e) {
+            // Captura qualquer exceção e imprime o erro
+            throw new RuntimeException("Ocorreu um erro: " + e.getMessage());
+        }
+    }
 }
